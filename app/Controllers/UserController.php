@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\Controllers\Auth;
+	namespace App\Controllers;
 
 	use App\Controllers\Controller;
 
@@ -17,5 +17,6 @@
 			$query->execute(array($request->getParam('name'), $request->getParam('email'), $request->getParam('pass')));
 			
 			return $response->withRedirect($this->router->pathFor('home'));
+			// return $response->withStatus(302)->withHeader('Location', $this->router->pathFor('home'));
 		}
 	}

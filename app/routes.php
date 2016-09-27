@@ -2,8 +2,11 @@
 
 	$app->get('/', 'HomeController:index')->setName('home');
 
-	$app->get('/auth/signup', 'UserController:getSignup')->setName('user.signup');
-	$app->post('/auth/signup', 'UserController:postSignup');
+	$app->get('/signup', 'UserController:getSignup')->setName('user.signup');
+	$app->post('/signup', 'UserController:postSignup');
+
+	// $app->get('/signup', UserController::class.":getSignup")->setName('user.signup');
+	// $app->post('/signup', UserController::class.":postSignup");
 
 	// $app->get('/{id}', 'UsersController:editLocation')->setName('editLocation');
 

@@ -41,7 +41,7 @@
 	    ]);
 	    $view->addExtension(new \Slim\Views\TwigExtension(
 	        $container->router,
-	        $container->request->getUri(),
+	        $container->request->getUri()
 	    ));
 
 	    return $view;
@@ -52,7 +52,7 @@
 	};
 
 	$container['UserController'] = function ($container) {
-		return new \App\Controllers\Auth\UserController($container);
+		return new \App\Controllers\UserController($container);
 	};
 
 	require '../app/routes.php';

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Matcha</title>
+		<link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/app.css">
+	</head>
+
+	<header>
+		{% include 'templates/partials/header.twig' %}
+	</header>
+	
+	<body>
+
+		{% block content %} {% endblock %}
+
+	</body>
+
+	<footer>
+		{% include 'templates/partials/footer.twig' %}
+	</footer>
+
+</html>

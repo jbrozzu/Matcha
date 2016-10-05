@@ -1,0 +1,14 @@
+
+<ul>
+    <li><a class="logo" href=" ">MATCHA</a></li>
+    
+    	<li><a class='nav' href='{{ path_for('home') }}'>Accueil</a></li>
+
+        {% if auth.isLogged %}
+    	<li style="float:right"><a class='nav' href='{{ path_for('auth.logout') }}'>Logout</a></li>
+    	{% else %}
+        <li style="float:right; border-left:1px solid #bbb;" class="copy"><a class="nav" href=" {{ path_for('auth.signup') }} ">Signup</a></li>
+        <li style="float:right; border-left:1px solid #bbb;"><a class='nav' href='{{ path_for('auth.login') }}' >Login</a></li>
+        {% endif %}
+       
+</ul>

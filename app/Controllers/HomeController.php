@@ -2,11 +2,13 @@
 
 	namespace App\Controllers;
 
+	use App\Models\User;
+
 
 	class HomeController extends Controller
 	{
-		public function index($request, $response) 
+		public function index($request, $response)
 		{
-			return $this->view->render($response, 'homepage.php');
+			return $this->view->render($response, 'home.twig');
 		}
 	}

@@ -2,15 +2,10 @@
 
 	$app->get('/', 'HomeController:index')->setName('home');
 
-	$app->get('/signup', 'UserController:getSignup')->setName('user.signup');
-	$app->post('/signup', 'UserController:postSignup');
+	$app->get('/auth/signup', 'AuthController:getSignup')->setName('auth.signup');
+	$app->post('/auth/signup', 'AuthController:postSignup');
 
-	// $app->get('/signup', UserController::class.":getSignup")->setName('user.signup');
-	// $app->post('/signup', UserController::class.":postSignup");
+	$app->get('/auth/login', 'AuthController:getLogin')->setName('auth.login');
+	$app->post('/auth/login', 'AuthController:postLogin');
 
-	// $app->get('/{id}', 'UsersController:editLocation')->setName('editLocation');
-
-
-	$app->get('/contact', function($request, $response){
-	    return $this->view->render($response, 'contact.php');
-	});
+	$app->get('/auth/logout', 'AuthController:logout')->setName('auth.logout');

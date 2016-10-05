@@ -1,0 +1,57 @@
+{% extends 'templates/app.twig' %}
+
+
+{% block content %}
+
+	<div class="corpus">
+
+            {% if flash.getMessage('error') %}
+                {% for error in flash.getMessage('error') %}
+                    <div class="flashError">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        
+            
+                <div class="form">
+
+
+                    <form action="{{ path_for('auth.signup') }}" method="post" >
+                        <label for="pseudo" > Pseudo </label>
+                        <input type="text" name="pseudo" id="pseudo" autofocus />
+                        <br />
+                        <!-- {% if errors.email %}
+                        <span class='error-form'>{{ errors.name | first }} </span>
+                        <br />
+                        {% endif %} -->
+
+                        <label for="email"> E-mail </label>
+                        <input type="text" name="email" id="email" />
+                        <br />
+                        <!-- {% if errors.email %}
+                        <span class='error-form'>{{ errors.email | first }} </span>
+                        <br />
+                        {% endif %} -->
+
+                        
+                        <label for="password"> Mot de passe </label>
+                        <input type="password" name="password" id="password" />
+                        <br />
+                        <!-- {% if errors.password %}
+                        <span class='error-form'>{{ errors.password | first }} </span>
+                        <br />
+                        {% endif %} -->
+
+                        <label for="passwordbis"> Confirmation </label>
+                        <input type="password" name="passwordbis" id="passwordbis" />
+                        <br />
+
+                        <br />
+                        <input type="submit" value="ENVOYER" />      
+                    </form>
+                </div>
+
+            </div>
+
+{% endblock %}

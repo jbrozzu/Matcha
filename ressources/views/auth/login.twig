@@ -1,0 +1,31 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+
+
+<div class="corpus">
+
+	{% if flash.getMessage('error') %}
+        {% for error in flash.getMessage('error') %}
+            <div class="flashError">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endif %}
+        
+    <div class="form">
+        <form method="post" action="{{ path_for('auth.login') }}">
+			<label for="pseudo"> Pseudo </label>
+			<input type="text" name="pseudo" id="pseudo" autofocus />
+			<br />
+			<label for="password"> Mot de passe </label>
+			<input type="password" name="password" id="password" />
+			<br /><br />
+			<input type="submit" value="ENVOYER" />    
+            <div id='forgot'><a id='forgot-link' href="#"> Mot de passe oublié ? </a></div>  
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,13 +1,5 @@
 <?php
 
-	require '../config/app.php';
+require __DIR__ . '/../bootstrap/app.php';
 
-
-
-
-	require '../view/header.php';
-
-	$app->run();
-
-	require '../view/footer.php';
-
+$app->run();

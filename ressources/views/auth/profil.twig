@@ -1,0 +1,22 @@
+
+
+	{% extends 'templates/app.twig' %}
+
+	{% block content %}
+
+		<div class="corpus">
+
+			{% if flash.getMessage('error') %}
+		        {% for error in flash.getMessage('error') %}
+		            <div class="flashError">
+		                {{ error }}
+		            </div>
+		        {% endfor %}
+		    {% endif %}
+
+		    <h1> PROFIL :D  </h1>
+
+		</div>
+
+
+	{% endblock %}

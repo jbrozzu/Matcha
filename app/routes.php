@@ -9,3 +9,5 @@
 	$app->post('/auth/login', 'AuthController:postLogin');
 
 	$app->get('/auth/logout', 'AuthController:logout')->setName('auth.logout');
+
+	$app->get('/auth/profil', 'AuthController:getProfil')->setName('auth.profil');

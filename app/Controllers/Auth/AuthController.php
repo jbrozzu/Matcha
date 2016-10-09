@@ -27,7 +27,7 @@
 				AND $this->checkPassword($request->getParam('password'), $request->getParam('passwordbis')))
 			{
 				$this->user->createUser($request);
-				$_SESSION['user'] = $request->getParam('pseudo');
+				$_SESSION['user'] = ucfirst($request->getParam('pseudo'));
 				return $response->withRedirect($this->router->pathFor('home'));	
 			}
 
@@ -47,19 +47,36 @@
 		public function postLogin($request, $response)
 		{
 			$this->user = new User($this->container);
-			if ($this->user->checkLog($request->getParam('pseudo'), $request->getParam('password')))
+			if ($this->user->checkLog($request->getParam('pseudo'), $request->getParam('password')) == 2)
 			{
-				$_SESSION['user'] = $request->getParam('pseudo');
+				$_SESSION['user'] = ucfirst($request->getParam('pseudo'));
 				return $response->withRedirect($this->router->pathFor('home'));
 			}
-
-			return $response->withRedirect($this->router->pathFor('auth.login'));
+			elseif ($this->user->checkLog($request->getParam('pseudo'), $request->getParam('password')) == 1)
+			{
+				$this->flash->addMessage('error', 'Ce mot de passe est invalide');
+				return $response->withRedirect($this->router->pathFor('auth.login'));
+			}
+			else
+			{
+				$this->flash->addMessage('error', 'Ce pseudo n\'existe pas');
+				return $response->withRedirect($this->router->pathFor('auth.login'));
+			}
 		}
 
 		public function logout($request, $response)
 		{
 			session_start();
 			session_destroy();
+			return $response->withRedirect($this->router->pathFor('home'));
+		}
+
+		public function getProfil($request, $response)
+		{
+			if ($this->isLogged())
+			{
+				return $this->view->render($response, 'auth/profil.twig');
+			}
 			return $response->withRedirect($this->router->pathFor('home'));
 		}
 

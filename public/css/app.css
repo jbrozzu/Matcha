@@ -1,3 +1,5 @@
+/*  MAIN PAGE  */
+
 body {
 	padding-top: 80px;
 	padding-bottom: 40px;
@@ -5,6 +7,7 @@ body {
 }
 
 
+/*  HEADER  FOOTER  */
 
 header {
 	background-color: #2A4D6E;
@@ -26,10 +29,13 @@ ul {
 
 li {
     float: left;
+}
+
+.nav {
     border-right:1px solid #bbb;
 }
 
-li:last-child, .copy {
+li:last-child, #copy {
     border-right: none;
 }
 
@@ -57,10 +63,58 @@ footer {
     width: 100%;
 }
 
+.nav1 {
+    font-size: 18px;
+    padding-top: 16px;
+    padding-bottom: 12px;
+    border-left: 1px solid #bbb;
+    width: 165px;
+}
 
 
+/*  MENU DÉROULANT  */
 
-/*  FORMULAIRE */
+#def1 {
+    border-top:1px solid #bbb;
+}
+
+#menu-deroulant, #menu-deroulant ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+#menu-deroulant {
+    text-align: center;
+}
+#menu-deroulant li {
+    display: inline-block;
+    
+}
+#menu-deroulant ul li {
+    display: inherit;
+}
+#menu-deroulant a {
+    text-decoration: none;
+    display: block;
+    color:white;
+}
+#menu-deroulant ul {
+    position: absolute;
+    left: -999em;
+    text-align: left;
+    z-index: 1000;
+}
+#menu-deroulant li:hover ul {
+    left: auto;
+}
+
+.subtitle {
+    width: 205px;
+    text-align: center;
+}
+
+
+/*  FORMULAIRE  */
 
 .form {
     border-radius: 5px;
@@ -97,3 +151,5 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #E59400;
 }
+
+

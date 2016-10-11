@@ -7,18 +7,24 @@
 		<link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/app.css">
 	</head>
 
+	<body>
 	<header>
-		{% include 'templates/partials/header.twig' %}
+		<div class="container1">
+			{% include 'templates/partials/header.twig' %}
+		</div>
 	</header>
 	
-	<body>
+	<div class="corpus">
 
 		{% block content %} {% endblock %}
 
-	</body>
+	</div>	
 
 	<footer>
-		{% include 'templates/partials/footer.twig' %}
+		<div class="container1">
+			{% include 'templates/partials/footer.twig' %}
+		</div>
 	</footer>
+	</body>
 
 </html>

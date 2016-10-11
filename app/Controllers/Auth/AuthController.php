@@ -27,7 +27,7 @@
 				AND $this->checkPassword($request->getParam('password'), $request->getParam('passwordbis')))
 			{
 				$this->user->createUser($request);
-				$_SESSION['user'] = ucfirst($request->getParam('pseudo'));
+				$_SESSION['pseudo'] = ucfirst($request->getParam('pseudo'));
 				return $response->withRedirect($this->router->pathFor('home'));	
 			}
 
@@ -49,7 +49,7 @@
 			$this->user = new User($this->container);
 			if ($this->user->checkLog($request->getParam('pseudo'), $request->getParam('password')) == 2)
 			{
-				$_SESSION['user'] = ucfirst($request->getParam('pseudo'));
+				$_SESSION['pseudo'] = ucfirst($request->getParam('pseudo'));
 				return $response->withRedirect($this->router->pathFor('home'));
 			}
 			elseif ($this->user->checkLog($request->getParam('pseudo'), $request->getParam('password')) == 1)
@@ -75,14 +75,29 @@
 		{
 			if ($this->isLogged())
 			{
+				$this->user = new User($this->container);
+				$req = $this->user->getProfilInfos($_SESSION['pseudo']);
+				$_SESSION['nom'] = ($req['nom'] != NULL ? $req['nom'] : "N/A");
+				$_SESSION['prenom'] = ($req['prenom'] != NULL ? $req['prenom'] : "N/A");
+				$_SESSION['date_naissance'] = ($req['date_naissance'] != NULL ? $req['date_naissance'] : "N/A");
+				$_SESSION['sexe'] = ($req['sexe'] != NULL ? $req['sexe'] : "N/A");
+				$_SESSION['orientation'] = ($req['orientation'] != NULL ? $req['orientation'] : "N/A");
+				$_SESSION['localisation'] = ($req['localisation'] != NULL ? $req['localisation'] : "N/A");
+
 				return $this->view->render($response, 'auth/profil.twig');
 			}
+
 			return $response->withRedirect($this->router->pathFor('home'));
+		}
+
+		public function updateProfil($request, $response)
+		{
+			return $this->view->render($response, 'auth/updateProfil.twig');
 		}
 
 		public function isLogged()
         {
-        	if (isset($_SESSION['user']) && !empty($_SESSION['user']))
+        	if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo']))
         		return true;
         	return false;
         }

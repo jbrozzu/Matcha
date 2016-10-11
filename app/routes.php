@@ -11,3 +11,5 @@
 	$app->get('/auth/logout', 'AuthController:logout')->setName('auth.logout');
 
 	$app->get('/auth/profil', 'AuthController:getProfil')->setName('auth.profil');
+	$app->get('/auth/update', 'AuthController:updateProfil')->setName('update_profil');
+	$app->post('/auth/update', 'AuthController:postProfil');

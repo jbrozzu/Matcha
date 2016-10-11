@@ -62,5 +62,15 @@ class User extends Model
 	    	return 0;
 	    }
     }
+
+    public function getProfilInfos($pseudo)
+    {
+    	$req = $this->container->db->prepare('SELECT * FROM users where pseudo = :pseudo');
+    	$req->bindParam(':pseudo', $pseudo);
+    	$req->execute();
+    	$result = $req->fetch();
+    	
+    	return $result;
+    }
 }
 

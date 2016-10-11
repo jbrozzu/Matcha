@@ -4,19 +4,39 @@
 
 	{% block content %}
 
-		<div class="corpus">
+	
 
-			{% if flash.getMessage('error') %}
-		        {% for error in flash.getMessage('error') %}
-		            <div class="flashError">
-		                {{ error }}
-		            </div>
-		        {% endfor %}
-		    {% endif %}
+			<div class="user one"> </div>
 
-		    <h1> PROFIL :D  </h1>
+			<div id="infos">
 
-		</div>
+				<div id="label">
+					<div class="sublabel"> Pseudo : </div></br>
+					<div class="sublabel"> Nom : </div></br>
+					<div class="sublabel"> Prénom : </div></br>
+					<div class="sublabel"> Date de naissance : </div></br>
+					<div class="sublabel"> Sexe : </div></br>
+					<div class="sublabel"> Orientation : </div></br>
+					<div class="sublabel"> Localisation : </div></br>
+
+				</div>
+
+				<div id="result">
+					<div class="subresult"> {{ session.pseudo }} </div></br>
+					<div class="subresult"> {{ session.nom }} </div></br>
+					<div class="subresult"> {{ session.prenom }} </div></br>
+					<div class="subresult"> {{ session.date_naissance }} </div></br>
+					<div class="subresult"> {{ session.sexe }} </div></br>
+					<div class="subresult"> {{ session.orientation }} </div></br>
+					<div class="subresult"> {{ session.localisation }} </div></br>
+				</div>
+
+					<a href="{{ path_for('update_profil') }}"> <input type="submit" value="Modifier les informations" /> </a> 
+
+			</div>
+
+
+
 
 
 	{% endblock %}

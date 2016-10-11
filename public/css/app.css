@@ -1,22 +1,39 @@
 /*  MAIN PAGE  */
 
+html {
+    height: 93%;
+}
+
 body {
-	padding-top: 80px;
-	padding-bottom: 40px;
-    background-color: #F5F5F5;
+    background-image: url('../../ressources/images/confectionary.png');
+    height: 90%;
+}
+
+.corpus {
+    width: 1000px;
+    background-color: white;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
 }
 
 
 /*  HEADER  FOOTER  */
 
 header {
-	background-color: #2A4D6E;
-    border-bottom: solid 3px #333;
-
+	background-color: #333;
     position: fixed;
     top: 0;
     right: 0%;
     width: 100%;
+}
+
+.container1 {
+    width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 ul {
@@ -33,11 +50,10 @@ li {
 
 .nav {
     border-right:1px solid #bbb;
+    height: 22px;
 }
 
-li:last-child, #copy {
-    border-right: none;
-}
+
 
 li a {
     display: block;
@@ -53,10 +69,11 @@ li a:hover:not(.logo) {
 
 .logo {
 	background-color: #FFA500;
+    height: 20px;
 }
 
 footer {
-    border-top: solid 3px #333;
+    background-color: #333;
     position: fixed;
     bottom: 0;
     right: 0%;
@@ -68,7 +85,8 @@ footer {
     padding-top: 16px;
     padding-bottom: 12px;
     border-left: 1px solid #bbb;
-    width: 165px;
+    border-right: 1px solid #bbb;
+    width: 120px;
 }
 
 
@@ -87,7 +105,7 @@ footer {
     text-align: center;
 }
 #menu-deroulant li {
-    display: inline-block;
+    display: block;
     
 }
 #menu-deroulant ul li {
@@ -109,12 +127,14 @@ footer {
 }
 
 .subtitle {
-    width: 205px;
     text-align: center;
+    display: block;
+    width: 154px;
 }
 
 
 /*  FORMULAIRE  */
+
 
 .form {
     border-radius: 5px;
@@ -152,4 +172,57 @@ input[type=submit]:hover {
     background-color: #E59400;
 }
 
+
+/*  profil  */
+
+.user {
+  display: block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border: 2px solid #333;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.one {
+  background-image: url('http://philippedouale.com/wp-content/uploads/2014/12/Philippe-Douale.jpeg');
+}
+
+#infos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: orange;
+    margin-top: 30px;
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('../../ressources/images/confectionary.png');
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+#label {
+    width: 200px;
+    height: 280px;
+    position: inline-block;
+    padding-top: 15px;
+}
+
+#result {
+    width: 200px;
+    height: 280px;
+    position: inline-block;
+    text-align: left;
+    padding-top: 15px;
+}
+
+.sublabel {
+    text-align: right;
+     font-weight: bold;
+}
 

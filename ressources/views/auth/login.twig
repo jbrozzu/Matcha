@@ -3,15 +3,22 @@
 {% block content %}
 
 
+{% if flash.getMessage('error') %}
+    {% for error in flash.getMessage('error') %}
+        <div class="flashError">
+            {{ error }}
+        </div>
+    {% endfor %}
+{% endif %}
 
-
-	{% if flash.getMessage('error') %}
-        {% for error in flash.getMessage('error') %}
-            <div class="flashError">
-                {{ error }}
-            </div>
-        {% endfor %}
-    {% endif %}
+<!-- {% if flash.getMessage('error') %}
+        <div class="flashError">
+            {{ flash.getMessage('error').0 }}
+        </div>
+{% endif %} -->
+    
+    
+    <h2>Login</h2>
         
     <div class="form">
         <form method="post" action="{{ path_for('auth.login') }}">
@@ -21,7 +28,7 @@
 			<label for="password"> Mot de passe </label>
 			<input type="password" name="password" id="password" />
 			<br /><br />
-			<input type="submit" value="ENVOYER" />    
+			<input class='Sub' type="submit" value="ENVOYER" />    
             <div id='forgot'><a id='forgot-link' href="#"> Mot de passe oublié ? </a></div>  
         </form>
     </div>

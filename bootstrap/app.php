@@ -54,6 +54,10 @@
 		return new \App\Controllers\Auth\AuthController($container);
 	};
 
+	$container['ProfilController'] = function ($container){
+		return new \App\Controllers\Auth\ProfilController($container);
+	};
+
 	$container['flash'] = function () {
 		return new \Slim\Flash\Messages();
 	};

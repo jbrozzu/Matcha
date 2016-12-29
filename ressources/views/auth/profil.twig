@@ -12,6 +12,7 @@
 
 				<div id="label">
 					<div class="sublabel"> Pseudo : </div></br>
+					<div class="sublabel"> Email : </div></br>
 					<div class="sublabel"> Nom : </div></br>
 					<div class="sublabel"> Prénom : </div></br>
 					<div class="sublabel"> Date de naissance : </div></br>
@@ -23,15 +24,22 @@
 
 				<div id="result">
 					<div class="subresult"> {{ session.pseudo }} </div></br>
+					<div class="subresult"> {{ session.email }} </div></br>
 					<div class="subresult"> {{ session.nom }} </div></br>
 					<div class="subresult"> {{ session.prenom }} </div></br>
-					<div class="subresult"> {{ session.date_naissance }} </div></br>
-					<div class="subresult"> {{ session.sexe }} </div></br>
-					<div class="subresult"> {{ session.orientation }} </div></br>
-					<div class="subresult"> {{ session.localisation }} </div></br>
+					<div class="subresult"> {% if session.date_naissance == 'NULL' %} N/A {% else %} {{ session.date_naissance }} {% endif %} </div></br>
+					<div class="subresult"> {% if session.sexe == 0 %} N/A {% elseif session.sexe == 1 %} Homme {% else %} Femme {% endif %} </div></br>
+					<div class="subresult"> {% if session.orientation == 0 %} Bisexuel {% elseif session.orientation == 1 %} Hétérosexuel {% else %} Homosexuel {% endif %} </div></br>
+					<div class="subresult"> </div></br></br>
 				</div>
 
-					<a href="{{ path_for('update_profil') }}"> <input type="submit" value="Modifier les informations" /> </a> 
+				<div id="staticmap">
+					<a target="_blank" href="https://maps.google.com/?q={{session.latitude}},{{session.longitude}}&ll={{session.latitude}},{{session.longitude}}&z=10"><img id="img-static" src="http://maps.googleapis.com/maps/api/staticmap?center=&zoom=10&scale=false&size=400x250&maptype=roadmap&key=AIzaSyBzUTbQbmN-4-Eu8zqaIYVV5ziaOLs6Gxk&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C{{session.latitude}},{{session.longitude}}"></a>
+				</div>
+				
+				</br></br>
+
+					<a href="{{ path_for('update_profil') }}"> <input class="input-profil" type="submit" value="Modifier les informations" /> </a> 
 
 			</div>
 

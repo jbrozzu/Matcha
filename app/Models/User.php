@@ -9,8 +9,8 @@ class User extends Model
 {
 	public function createUser($request)
 	{
-		$query = $this->container->db->prepare("INSERT INTO users (pseudo, email, password, created_at) VALUES (?, ?, ?, NOW())");
-		$query->execute(array($request->getParam('pseudo'), $request->getParam('email'), hash('whirlpool', $request->getParam('password'))));
+		$query = $this->container->db->prepare("INSERT INTO users (pseudo, nom, prenom, email, password, latitude, longitude, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+		$query->execute(array($request->getParam('pseudo'), $request->getParam('nom'), $request->getParam('prenom'), $request->getParam('email'), hash('whirlpool', $request->getParam('password')), $request->getParam('lat'), $request->getParam('lng')));
 	}
 
 	public function nameExist($pseudo)
@@ -63,14 +63,33 @@ class User extends Model
 	    }
     }
 
-    public function getProfilInfos($pseudo)
+    public function getProfilInfos()
     {
     	$req = $this->container->db->prepare('SELECT * FROM users where pseudo = :pseudo');
-    	$req->bindParam(':pseudo', $pseudo);
+    	$req->bindParam(':pseudo', $_SESSION['pseudo']);
     	$req->execute();
     	$result = $req->fetch();
     	
     	return $result;
     }
+
+    public function saveNewProfil($pseudo, $email, $nom, $prenom, $date_naissance, $sexe, $orientation, $password, $latitude, $longitude)
+    {
+    	if ($password == '')
+    	{
+    		$req = $this->container->db->prepare('UPDATE users SET pseudo = ?, email = ?, nom = ?, prenom = ?, date_naissance = ?, sexe = ?, orientation = ?, latitude = ?, longitude = ? WHERE pseudo = ?');
+    		$req->execute(array($pseudo, $email, $nom, $prenom, $date_naissance, $sexe, $orientation, $latitude, $longitude, $_SESSION['pseudo']));
+    	}
+    	else
+    	{
+    		$req = $this->container->db->prepare('UPDATE users SET pseudo = ?, email = ?, nom = ?, prenom = ?, date_naissance = ?, sexe = ?, orientation = ?, password = ?, latitude = ?, longitude = ? WHERE pseudo = ?');
+    		$req->execute(array($pseudo, $email, $nom, $prenom, $date_naissance, $sexe, $orientation, hash('whirlpool', $password), $latitude, $longitude, $_SESSION['pseudo']));
+		}
+
+    }
+
 }
+
+
+
 

@@ -3,8 +3,126 @@
 {% block content %}
 
 
-Update Profil
+    <!-- {% if flash.getMessage('error') %}
+            <div class="flashError">
+                {{ flash.getMessage('error') }}
+            </div>
+    {% endif %} -->
+
+    {% if flash.getMessage('error') %}
+        {% for error in flash.getMessage('error') %}
+            <div class="flashError">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+	<h2>Update Profil</h2>
+	<div class="form">
+
+        <form action="{{ path_for('update_profil') }}" method="post" >
+            <label for="pseudo" > Pseudo </label>
+                <input type="text" name="pseudo" id="pseudo" value="{{ session.pseudo }}" />
+            <br/>
+            <!-- {% if errors.email %}
+            <span class='error-form'>{{ errors.name | first }} </span>
+            <br />
+            {% endif %} -->
+
+            <label for="email"> E-mail </label>
+                <input type="text" name="email" id="email" value="{{ session.email }}" />
+            <br/>
+
+            <label for="nom"> Nom </label>
+                <input type="text" name="nom" id="nom"  value="{% if session.nom == 'NULL' %}{% else %}{{ session.nom }}{% endif %}" />
+            <br/>
+
+            <label for="prenom"> Prénom </label>
+                <input type="text" name="prenom" id="prenom" value="{% if session.prenom == 'NULL' %}{% else %}{{ session.prenom }}{% endif %}" />
+            <br/>
+
+            <label for="date_naissance"> Date de Naissance </label>
+            <input type="date" name="date_naissance" id="date_naissance" placeholder="jj/mm/aaaa" value="{% if session.date_naissance == 'NULL' %}{% else %}{{ session.date_naissance }}{% endif %}" />
+            <br/>
+
+            <br/>
+            <label for="sexe"> Sexe </label> <br/>
+                <input type="radio" name="sexe" value="0" {% if session.sexe == '0' %} checked {% endif %}> Non renseigné<br/> 
+                <input type="radio" name="sexe" value="1" {% if session.sexe == '1' %} checked {% endif %}> Homme<br/>
+				<input type="radio" name="sexe" value="2" {% if session.sexe == '2' %} checked {% endif %}> Femme<br/>
+            <br/>
+
+            <label for="orientation"> Orientation </label> <br />
+            <input type="radio" name="orientation" value="1" {% if session.orientation == '1' %} checked {% endif %}> Hétérosexuel<br/>
+				<input type="radio" name="orientation" value="2" {% if session.orientation == '2' %} checked {% endif %}> Homosexuel<br/>
+				<input type="radio" name="orientation" value="0" {% if session.orientation == '0' %} checked {% endif %}> Bisexuel<br/>
+            <br/>
+
+            <label for="localisation"> Localisation (Déplacez le curseur rouge)</label>
+            <div id="googleMap" ></div>
+            <input type="hidden" name="lat" id="lat" value="{{ session.latitude }}">  
+            <input type="hidden" name="lng" id="lng" value="{{ session.longitude }}"> 
+            <br/>
+
+            <hr />
+
+            <br/>
+            <label for="password"> Modifier le Mot de passe </label>
+            <input type="password" name="password" id="password" />
+            <br />
+
+            <label for="passwordbis"> Confirmation </label>
+            <input type="password" name="passwordbis" id="passwordbis" />
+            <br />
+            
+            <br/>
+            <input class="Sub" type="submit" value="Update" />      
+        </form>
+
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkhh3JlXhVlRcpSjpHurjyRiDH7BJFoOs"> </script>
+        <script type="text/javascript">
+
+            function initialize() {
+
+                var mapProp = {
+                    center: new google.maps.LatLng({{ session.latitude }}, {{ session.longitude }}),
+                    zoom: 5,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+               
+               var myLatLng = new google.maps.LatLng({{ session.latitude }}, {{ session.longitude }});
+
+
+                marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: 'Default Marker',
+                    draggable: true
+                });
+
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+                google.maps.event.addListener(marker,'drag',function(event) {
+                    document.getElementById('lat').value = event.latLng.lat();
+                    document.getElementById('lng').value = event.latLng.lng();
+                });
+
+                google.maps.event.addListener(marker,'dragend',function(event) {
+                    document.getElementById('lat').value = event.latLng.lat();
+                    document.getElementById('lng').value = event.latLng.lng();
+                });
+
+                map.setCenter(marker.position);
+                marker.setMap(map);
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+	</script>
 
 
 
 {% endblock %}
+

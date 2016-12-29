@@ -4,16 +4,21 @@
 {% block content %}
 
 
+    <!-- {% if flash.getMessage('error') %}
+            <div class="flashError">
+                {{ flash.getMessage('error').0 }}
+            </div>
+    {% endif %} -->
 
-            {% if flash.getMessage('error') %}
-                {% for error in flash.getMessage('error') %}
-                    <div class="flashError">
-                        {{ error }}
-                    </div>
-                {% endfor %}
-            {% endif %}
+    {% if flash.getMessage('error') %}
+        {% for error in flash.getMessage('error') %}
+            <div class="flashError">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endif %}
         
-            
+                <h2>Signup</h2>
                 <div class="form">
 
 
@@ -25,6 +30,14 @@
                         <span class='error-form'>{{ errors.name | first }} </span>
                         <br />
                         {% endif %} -->
+
+                        <label for="nom" > Nom </label>
+                        <input type="text" name="nom" id="nom" />
+                        <br />
+
+                        <label for="prenom" > Prénom </label>
+                        <input type="text" name="prenom" id="prenom" />
+                        <br />
 
                         <label for="email"> E-mail </label>
                         <input type="text" name="email" id="email" />
@@ -47,10 +60,31 @@
                         <input type="password" name="passwordbis" id="passwordbis" />
                         <br />
 
+                        <input type="hidden" name="lat" id="lat" value="" >  
+                        <input type="hidden" name="lng" id="lng" value="" > 
+
                         <br />
-                        <input type="submit" value="ENVOYER" />      
+                        <input class='Sub' type="submit" value="ENVOYER" />      
                     </form>
                 </div>
+
+                <script type="text/javascript" src="https://www.google.com/jsapi"> </script>
+                <script type="text/javascript">
+
+                    if (google.loader.ClientLocation)
+                    {
+                        document.getElementById('lat').value = google.loader.ClientLocation.latitude;
+                        document.getElementById('lng').value = google.loader.ClientLocation.longitude;
+                    }
+                    else
+                    {
+                        document.getElementById('lat').value = 48.896931;
+                        document.getElementById('lng').value = 2.318333;
+                    }
+
+
+
+                </script>
 
 
 {% endblock %}

@@ -1,0 +1,59 @@
+
+
+	{% extends 'templates/app.twig' %}
+
+	{% block content %}
+
+
+		<div class="user one"> {% if session.picProfil == "NULL" %} {% else %}  <img class="img_profil" src="../../ressources/pictures/{{ session.searchPicture.img_profil }}" >  {% endif %}</div>
+
+
+			
+
+			
+			<div id="infos">
+
+				<div id="label">
+					<div class="sublabel"> Pseudo : </div></br>
+					<div class="sublabel"> Email : </div></br>
+					<div class="sublabel"> Nom : </div></br>
+					<div class="sublabel"> Prénom : </div></br>
+					<div class="sublabel"> Date de naissance : </div></br>
+					<div class="sublabel"> Sexe : </div></br>
+					<div class="sublabel"> Orientation : </div></br>
+					<div class="sublabel"> Centres d'intérêt : </div></br></br>
+					<div class="sublabel"> Localisation : </div></br>
+
+				</div>
+
+				<div id="result">
+					<div class="subresult"> {{ session.searchProfil.pseudo }} </div></br>
+					<div class="subresult"> {{ session.searchProfil.email }} </div></br>
+					<div class="subresult"> {{ session.searchProfil.nom }} </div></br>
+					<div class="subresult"> {{ session.searchProfil.prenom }} </div></br>
+					<div class="subresult"> {% if session.searchProfil.date_naissance == NULL %} N/A {% else %} {{ session.searchProfil.date_naissance }} ({{ session.searchProfil.age }} ans) {% endif %} </div></br>
+					<div class="subresult"> {% if session.searchProfil.sexe == 0 %} N/A {% elseif session.searchProfil.sexe == 1 %} Homme {% else %} Femme {% endif %} </div></br>
+					<div class="subresult"> {% if session.searchProfil.orientation == 0 %} Bisexuel {% elseif session.searchProfil.orientation == 1 %} Hétérosexuel {% else %} Homosexuel {% endif %} </div></br>
+					<div class="subresult"> {% if session.searchProfil.hobby == NULL %} N/A {% else %} {{ session.searchProfil.hobby }} {% endif %} </div></br>
+					<div class="subresult"> </div>
+				</div>
+
+				<div id="staticmap">
+					<a target="_blank" href="https://maps.google.com/?q={{session.searchProfil.latitude}},{{session.searchProfil.longitude}}&ll={{session.searchProfil.latitude}},{{session.searchProfil.longitude}}&z=10"><img id="img-static" src="http://maps.googleapis.com/maps/api/staticmap?center=&zoom=10&scale=false&size=400x250&maptype=roadmap&key=AIzaSyBzUTbQbmN-4-Eu8zqaIYVV5ziaOLs6Gxk&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C{{session.searchProfil.latitude}},{{session.searchProfil.longitude}}"></a>
+				</div>
+				
+				</br></br>
+
+					<!-- <a href="#"> <input class="input-profil" type="submit" value="Modifier les informations" /> </a>  -->
+
+			</div>
+
+
+
+
+
+
+
+	{% endblock %}
+
+

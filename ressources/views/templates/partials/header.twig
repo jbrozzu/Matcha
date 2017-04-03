@@ -2,25 +2,27 @@
 <ul>
     <li><a class="logo" href=" ">MATCHA</a></li>
     
-    	<li><a class='nav' href='{{ path_for('home') }}'>Accueil</a></li>
+	<li><a class='nav' href='{{ path_for('home') }}'>Accueil</a></li>
 
-        {% if auth.isLogged %}
-
-        <ul id="menu-deroulant">
-    		<li style="float:right"><a class='nav1' href=''> {{ session.pseudo }}</a>
-    			<ul>
-					<li class="subtitle" id="def1"><a href="{{ path_for('auth.profil') }}">Mon Profil</a></li> </br>
-					<li class="subtitle"><a href="#">Mes Contacts</a></li> </br>
-					<li class="subtitle" id="def1"><a href="{{ path_for('auth.logout') }}">Déconnexion</a></li>
-				</ul>
-			</li>
-		</ul>
+    {% if auth.isLogged %}
 
 
-    	{% else %}
-        <li style="float:right; border-left:1px solid #bbb;" class="copy"><a class="nav" href=" {{ path_for('auth.signup') }} ">Signup</a></li>
-        <li style="float:right; border-left:1px solid #bbb;"><a class='nav' href='{{ path_for('auth.login') }}' >Login</a></li>
-        {% endif %}
+    <ul id="menu-deroulant" style="float:right">
+		<li style="float:right"><a class='nav1' href=''> {{ session.pseudo }}</a>
+			<ul>
+				<li class="subtitle" id="def1"><a href="{{ path_for('auth.profil') }}">Mon Profil</a></li> </br>
+				<li class="subtitle"><a href="#">Mes Contacts</a></li> </br>
+				<li class="subtitle" id="def1"><a href="{{ path_for('auth.logout') }}">Déconnexion</a></li>
+			</ul>
+		</li>
+	</ul>
+     <li style="float:right"><a class='nav1' href="{{ path_for('search') }}"> Recherche </a></li>
+
+
+	{% else %}
+    <li style="float:right; border-left:1px solid #bbb;" class="copy"><a class="nav" href=" {{ path_for('auth.signup') }} ">Signup</a></li>
+    <li style="float:right; border-left:1px solid #bbb;"><a class='nav' href='{{ path_for('auth.login') }}' >Login</a></li>
+    {% endif %}
        
 </ul> 
 

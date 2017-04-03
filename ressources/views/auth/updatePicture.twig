@@ -1,0 +1,35 @@
+{% extends 'templates/app.twig' %}
+
+	{% block content %}
+
+
+	{% if flash.getMessage('error') %}
+        {% for error in flash.getMessage('error') %}
+            <div class="flashError">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+
+    <form id="form_upload" enctype="multipart/form-data" action="{{ path_for('update_picture') }}" method="POST">              
+        <label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Uploader :</label>
+        <input name="fichier" type="file" id="fichier_a_uploader" />
+
+        <input id="upload" type="submit" name="submit" value="Uploader" />                 
+	</form>
+
+	<div class="table_pic">
+
+		{% if session.img1 != "NULL" %}<div> <a class="cross" href="{{ path_for('delete_pic', {'id': '1'}) }}" onclick="return confirm('Are you sure?')"><img src="../../ressources/images/cross.png"></a><div class="cont_pic"> <img class="display_pic" src="../../ressources/pictures/{{ session.img1 }}"> </div> </div> {% endif %}
+		{% if session.img2 != "NULL" %}<div> <a class="cross" href="{{ path_for('delete_pic', {'id': '2'}) }}" onclick="return confirm('Are you sure?')"><img src="../../ressources/images/cross.png"></a><div class="cont_pic"> <img class="display_pic" src="../../ressources/pictures/{{ session.img2 }}"> </div> </div> {% endif %}
+		{% if session.img3 != "NULL" %}<div> <a class="cross" href="{{ path_for('delete_pic', {'id': '3'}) }}" onclick="return confirm('Are you sure?')"><img src="../../ressources/images/cross.png"></a><div class="cont_pic"> <img class="display_pic" src="../../ressources/pictures/{{ session.img3 }}"> </div> </div> {% endif %}
+		{% if session.img4 != "NULL" %}<div> <a class="cross" href="{{ path_for('delete_pic', {'id': '4'}) }}" onclick="return confirm('Are you sure?')"><img src="../../ressources/images/cross.png"></a><div class="cont_pic"> <img class="display_pic" src="../../ressources/pictures/{{ session.img4 }}"> </div> </div> {% endif %}
+		{% if session.img5 != "NULL" %}<div> <a class="cross" href="{{ path_for('delete_pic', {'id': '5'}) }}" onclick="return confirm('Are you sure?')"><img src="../../ressources/images/cross.png"></a><div class="cont_pic"> <img class="display_pic" src="../../ressources/pictures/{{ session.img5 }}"> </div> </div> {% endif %}
+
+	</div>
+
+
+
+	{% endblock %}

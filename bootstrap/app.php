@@ -50,6 +50,10 @@
 		return new \App\Controllers\HomeController($container);
 	};
 
+	$container['SearchController'] = function ($container){
+		return new \App\Controllers\SearchController($container);
+	};
+
 	$container['AuthController'] = function ($container){
 		return new \App\Controllers\Auth\AuthController($container);
 	};
@@ -61,6 +65,8 @@
 	$container['flash'] = function () {
 		return new \Slim\Flash\Messages();
 	};
+
+
 
 	require __DIR__ . '/../app/routes.php';
 

@@ -22,44 +22,45 @@
 	<div class="form">
 
         <form action="{{ path_for('update_profil') }}" method="post" >
-            <label for="pseudo" > Pseudo </label>
+            <label for="pseudo" > <b>Pseudo</b> </label>
                 <input type="text" name="pseudo" id="pseudo" value="{{ session.pseudo }}" />
             <br/>
-            <!-- {% if errors.email %}
-            <span class='error-form'>{{ errors.name | first }} </span>
-            <br />
-            {% endif %} -->
 
-            <label for="email"> E-mail </label>
+            <label for="email"> <b>E-mail</b> </label>
                 <input type="text" name="email" id="email" value="{{ session.email }}" />
             <br/>
 
-            <label for="nom"> Nom </label>
+            <label for="nom"> <b>Nom</b> </label>
                 <input type="text" name="nom" id="nom"  value="{% if session.nom == 'NULL' %}{% else %}{{ session.nom }}{% endif %}" />
             <br/>
 
-            <label for="prenom"> Prénom </label>
+            <label for="prenom"> <b>Prénom</b> </label>
                 <input type="text" name="prenom" id="prenom" value="{% if session.prenom == 'NULL' %}{% else %}{{ session.prenom }}{% endif %}" />
             <br/>
 
-            <label for="date_naissance"> Date de Naissance </label>
+            <label for="date_naissance"> <b>Date de Naissance</b> </label>
             <input type="date" name="date_naissance" id="date_naissance" placeholder="jj/mm/aaaa" value="{% if session.date_naissance == 'NULL' %}{% else %}{{ session.date_naissance }}{% endif %}" />
             <br/>
 
             <br/>
-            <label for="sexe"> Sexe </label> <br/>
+            <label for="sexe"> <b>Sexe</b> </label> <br/>
                 <input type="radio" name="sexe" value="0" {% if session.sexe == '0' %} checked {% endif %}> Non renseigné<br/> 
                 <input type="radio" name="sexe" value="1" {% if session.sexe == '1' %} checked {% endif %}> Homme<br/>
 				<input type="radio" name="sexe" value="2" {% if session.sexe == '2' %} checked {% endif %}> Femme<br/>
             <br/>
 
-            <label for="orientation"> Orientation </label> <br />
+            <label for="orientation"> <b>Orientation</b> </label> <br />
             <input type="radio" name="orientation" value="1" {% if session.orientation == '1' %} checked {% endif %}> Hétérosexuel<br/>
 				<input type="radio" name="orientation" value="2" {% if session.orientation == '2' %} checked {% endif %}> Homosexuel<br/>
 				<input type="radio" name="orientation" value="0" {% if session.orientation == '0' %} checked {% endif %}> Bisexuel<br/>
             <br/>
 
-            <label for="localisation"> Localisation (Déplacez le curseur rouge)</label>
+            <label for="hobby"> <b>Centres d'intérêt</b> </label> <br /><label for="hobby"> (précédé de "#"  ex: "#cinéma #chocolat #mode..." --> 50 caractères max). </label> <br />
+            <input type="text" name="hobby" id="hobby" value="{% if session.hobby == 'NULL' %}{% else %}{{ session.hobby }}{% endif %}"/>
+            <br/>    
+            <br/>
+
+            <label for="localisation"> <b>Localisation</b> (Déplacez le curseur rouge)</label>
             <div id="googleMap" ></div>
             <input type="hidden" name="lat" id="lat" value="{{ session.latitude }}">  
             <input type="hidden" name="lng" id="lng" value="{{ session.longitude }}"> 
@@ -68,14 +69,14 @@
             <hr />
 
             <br/>
-            <label for="password"> Modifier le Mot de passe </label>
+            <label for="password"> <b>Modifier le Mot de passe</b> </label>
             <input type="password" name="password" id="password" />
             <br />
 
-            <label for="passwordbis"> Confirmation </label>
+            <label for="passwordbis"> <b>Confirmation</b> </label>
             <input type="password" name="passwordbis" id="passwordbis" />
-            <br />
-            
+            <br /> <br />
+
             <br/>
             <input class="Sub" type="submit" value="Update" />      
         </form>

@@ -6,7 +6,12 @@
 
 	
 
-			<div class="user one"> </div>
+			<div class="user one"> {% if session.picProfil == "NULL" %} {% else %}  <img class="img_profil" src="../../ressources/pictures/{{ session.picProfil }}" >  {% endif %}</div>
+
+
+			
+
+			<div class="div-input-picture"><a href="{{ path_for('update_picture') }}"> <input class="input-picture" type="submit" value="Gérer mes photos" /> </a> </div>
 
 			<div id="infos">
 
@@ -18,6 +23,7 @@
 					<div class="sublabel"> Date de naissance : </div></br>
 					<div class="sublabel"> Sexe : </div></br>
 					<div class="sublabel"> Orientation : </div></br>
+					<div class="sublabel"> Centres d'intérêt : </div></br></br>
 					<div class="sublabel"> Localisation : </div></br>
 
 				</div>
@@ -30,7 +36,8 @@
 					<div class="subresult"> {% if session.date_naissance == 'NULL' %} N/A {% else %} {{ session.date_naissance }} {% endif %} </div></br>
 					<div class="subresult"> {% if session.sexe == 0 %} N/A {% elseif session.sexe == 1 %} Homme {% else %} Femme {% endif %} </div></br>
 					<div class="subresult"> {% if session.orientation == 0 %} Bisexuel {% elseif session.orientation == 1 %} Hétérosexuel {% else %} Homosexuel {% endif %} </div></br>
-					<div class="subresult"> </div></br></br>
+					<div class="subresult"> {% if session.hobby == 'NULL' %} N/A {% else %} {{ session.hobby }} {% endif %} </div></br>
+					<div class="subresult"> </div>
 				</div>
 
 				<div id="staticmap">

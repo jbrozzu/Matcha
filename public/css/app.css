@@ -34,7 +34,7 @@ header {
     top: 0;
     right: 0%;
     width: 100%;
-    z-index: 2;
+    z-index: 10;
 }
 
 .container1 {
@@ -85,6 +85,7 @@ footer {
     bottom: 0;
     right: 0%;
     width: 100%;
+    z-index: 10;
 }
 
 .nav1 {
@@ -98,6 +99,7 @@ footer {
 
 
 /*  MENU DÉROULANT  */
+
 
 #def1 {
     border-top:1px solid #bbb;
@@ -162,25 +164,6 @@ input[type=text], input[type=password], input[type=date] {
     font-size: 13px;
 }
 
-/*input[type=submit] {
-    width: 100%;
-    background-color: #FFA500;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: solid 2px #333;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 100%;
-    display: inline-block;
-}
-
-input[type=submit]:hover {
-    background-color: #E59400;
-}
-*/
-
 .Sub {
     width: 100%;
     background-color: #FFA500;
@@ -225,7 +208,16 @@ input[type=submit]:hover {
 }
 
 .one {
-  background-image: url('http://philippedouale.com/wp-content/uploads/2014/12/Philippe-Douale.jpeg');
+  background-image: url('https://mcmprodaaas.s3.amazonaws.com/s3fs-public/styles/adaptive/public/profile-placeholder.png?itok=FCDqaoiV');
+  overflow: hidden;
+}
+
+.img_profil {
+    max-width: 204px;
+    min-width: 204px;
+    min-height: 204px;
+    margin-top: -2px;
+    margin-left: -2px;
 }
 
 #infos {
@@ -243,6 +235,7 @@ input[type=submit]:hover {
     padding-top: 10px;
     border-radius: 10px;
     border: 1px solid #333;
+    word-wrap: break-word;
 }
 
 #label {
@@ -268,6 +261,7 @@ input[type=submit]:hover {
 #img-static {
     border-radius: 35%;
     border: 2px solid #333;
+    margin-top: 50px;
 }
 
 .sublabel {
@@ -303,4 +297,166 @@ input[type=submit]:hover {
 .input-profil:hover {
     background-color: #E59400;
 }
+
+.input-picture {
+    width: 100%;
+    padding: 2px 0;
+    border: solid 1px #333;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 87%;
+    display: inline-block;
+}
+
+.div-input-picture {
+    padding: 25px 0 0 0;
+    width: 188px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.input-picture:hover {
+    background-color: #ccc;
+}
+
+
+/*    UPLOAD PICTURES   */
+
+#form_upload {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 15px;
+    width: 400px;
+}
+
+
+.table_pic {
+    width: 970px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 80px;
+}
+
+.cont_pic {
+    margin: 10px 5px;
+    border: 3px solid #ccc;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #cccccc;
+}
+
+.display_pic {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.cross {
+    position: absolute;
+    z-index: 5;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+
+/*  RECHERCHE  */
+
+.cont_search {
+    width: 970px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.cont_uni_search {
+    width: 200px;
+    height: 200px;
+    background-color: #cccccc80;
+    margin-left: 40px;
+    margin-bottom: 30px;
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 30px;
+}
+
+.search_pic {
+    max-width: 154px;
+    min-width: 154px;
+    min-height: 154px;
+    margin-top: -2px;
+    margin-left: -2px;
+}
+
+.cont_pic_search {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border: 2px solid #333;
+    background-image: url('https://mcmprodaaas.s3.amazonaws.com/s3fs-public/styles/adaptive/public/profile-placeholder.png?itok=FCDqaoiV');
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.info_search {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.link_search {
+    text-decoration: none;
+    color: black;
+}
+
+.form_search {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    width: 98%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.lib_search {
+    display: inline-block;
+    margin-left: 14px;
+}
+
+.search_elem {
+    display: inline-block;
+}
+
+.sub_search {
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+}
+
+.sub_search_bottom {
+    width: 100%;
+    background-color: #FFA500;
+    color: white;
+    border: solid 2px #333;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 95%;
+    margin-top: 10px;
+}
+
+.sub_search_bottom:hover {
+    background-color: #E59400;
+}
+
 

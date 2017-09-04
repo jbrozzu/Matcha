@@ -331,6 +331,37 @@ class User extends Model
         return $result;
     }
 
+    public function checkForgot($pseudo, $email)
+    {
+        $req_pseudo = $this->container->db->prepare('SELECT pseudo FROM users where pseudo = :pseudo');
+        $req_pseudo->bindParam(':pseudo', $pseudo);
+        $req_pseudo->execute();
+        if ($req_pseudo->fetchColumn())
+        {
+            $req_email = $this->container->db->prepare('SELECT email FROM users where pseudo = :pseudo');
+            $req_email->bindParam(':pseudo', $pseudo);
+            $req_email->execute();
+            if ($req_email->fetchColumn() == $email)
+            {
+                return 1;
+            }
+            else 
+            {
+                return 2;
+            }
+        }
+        else 
+        {
+            return 3;
+        }
+    }
+
+    public function saveNewPass($pseudo, $email, $hash)
+    {
+        $req_mdp = $this->container->db->prepare("UPDATE users SET password = ? WHERE pseudo = ? AND email = ?");
+        $req_mdp->execute(array($hash, $pseudo, $email));
+    }
+
 }
 
 

@@ -71,4 +71,61 @@
 			return $response->withRedirect($this->router->pathFor('home'));
 		}
 
+		public function getForgot($request, $response)
+		{	
+			return $this->view->render($response, 'auth/forgot.twig');
+		}
+
+		public function postForgot($request, $response)
+		{	
+			$email = $request->getParam('email');
+			$pseudo = $request->getParam('pseudo');
+			$num = $this->user->checkForgot($pseudo, $email);
+			if ($num == "1")
+			{	
+				$seed = str_split('aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ');
+		        shuffle($seed);
+		        $rand = '';
+		        foreach (array_rand($seed, 7) as $k) $rand .= $seed[$k];
+		        $rand = $rand . rand(1, 9);
+		        $hash = hash('whirlpool', $rand);
+
+		        $this->user->saveNewPass($pseudo, $email, $hash);
+
+		        $to      = $email;
+				$subject = 'Réinitialisation';
+				$message = '
+				 
+				Votre mot de passe a été réinitialisé.
+				Vous pouvez dès à présent vous connecter avec votre nouveau mot de passe.
+				 
+				------------------------
+				Username: '.$pseudo.'
+				nouveau mot de passe: '.$rand.'
+				------------------------
+				 
+				Cliquez sur ce lien pour revenir sur le site Matcha:
+				http://localhost:8080/Matcha/public/auth/login
+				
+				';
+				                     
+				$headers = 'From:noreply@yourwebsite.com' . "\r\n";
+				mail($to, $subject, $message, $headers);
+
+
+
+				$this->flash->addMessage('error', 'Un nouveau mot de passe vient de vous être envoyé');
+				return $response->withRedirect($this->router->pathFor('home'));
+			}
+			else if ($num == "2")
+			{
+				$this->flash->addMessage('error', 'Cet e-mail ne correspond pas au pseudo');
+				return $response->withRedirect($this->router->pathFor('auth.forgot'));
+			}
+			else 
+			{
+				$this->flash->addMessage('error', 'Ce pseudo n\'existe pas');
+				return $response->withRedirect($this->router->pathFor('auth.forgot'));
+			}
+		}
 	}

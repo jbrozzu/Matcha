@@ -192,14 +192,11 @@
 
 		public function postPicture($request, $response)
 		{
-			
-
 			if( !is_dir('../ressources/pictures/' . $_SESSION['pseudo']) ) {
 			  	if( !mkdir('../ressources/pictures/' . $_SESSION['pseudo'], 0755) ) {
 			    	exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !');
 			  	}
 			}
-
 			
 			if ($this->checkPicture() == true)
 			{
@@ -254,7 +251,6 @@
 
 		}
 
-
 		public function deletePicture($request, $response, $args)
 		{
 			$img = 'img' . $args['id'];
@@ -263,7 +259,6 @@
 			$this->flash->addMessage('error', 'La photo a bien été supprimé.');
 			return $response->withRedirect($this->router->pathFor('update_picture'));
 		}
-
 	}
 
 

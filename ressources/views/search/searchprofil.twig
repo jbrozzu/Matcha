@@ -5,7 +5,7 @@
 	{% block content %}
 
 
-		<div class="user one"> {% if session.picProfil == "NULL" %} {% else %}  <img class="img_profil" src="../../ressources/pictures/{{ session.searchPicture.img_profil }}" >  {% endif %}</div>
+		<div class="user one"> {% if session.searchPicture.img_profil == "NULL" %} {% else %}  <img class="img_profil" src="../../ressources/pictures/{{ session.searchPicture.img_profil }}" >  {% endif %}</div>
 
 
 			

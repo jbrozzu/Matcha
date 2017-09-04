@@ -18,18 +18,17 @@
 {% endif %} -->
     
     
-    <h2>Login</h2>
+    <h2>Mot de passe oublié</h2>
         
     <div class="form">
-        <form method="post" action="{{ path_for('auth.login') }}">
+        <form method="post" action="{{ path_for('auth.forgot') }}">
 			<label for="pseudo"> Pseudo </label>
 			<input type="text" name="pseudo" id="pseudo" autofocus />
 			<br />
-			<label for="password"> Mot de passe </label>
-			<input type="password" name="password" id="password" />
+			<label for="email"> E-mail </label>
+			<input type="text" name="email" id="email" />
 			<br /><br />
-			<input class='Sub' type="submit" value="ENVOYER" />    
-            <div id='forgot'><a id='forgot-link' href='{{ path_for('auth.forgot') }}'> Mot de passe oublié ? </a></div>  
+			<input class='Sub' type="submit" value="ENVOYER" />
         </form>
     </div>
 

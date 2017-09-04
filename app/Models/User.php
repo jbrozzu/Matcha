@@ -10,7 +10,8 @@ class User extends Model
 	public function createUser($request)
 	{
 		$query = $this->container->db->prepare("INSERT INTO users (pseudo, nom, prenom, email, password, latitude, longitude, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
-		$query->execute(array($request->getParam('pseudo'), $request->getParam('nom'), $request->getParam('prenom'), $request->getParam('email'), hash('whirlpool', $request->getParam('password')), $request->getParam('lat'), $request->getParam('lng')));
+		$query->execute(array($request->getParam('pseudo'), $request->getParam('nom'), $request->getParam('prenom'), 
+            $request->getParam('email'), hash('whirlpool', $request->getParam('password')), $request->getParam('lat'), $request->getParam('lng')));
 		$query = $this->container->db->prepare("INSERT INTO Images (pseudo) VALUES (?)");
 		$query->execute(array($request->getParam('pseudo')));
 	}
@@ -201,7 +202,7 @@ class User extends Model
     }
 
 
-    public function getAge($date) 
+    public function getAge($date)
     {
         $age = date('Y') - date('Y', strtotime($date));
         if (date('md') < date('md', strtotime($date))) 
@@ -225,29 +226,106 @@ class User extends Model
     }
 
 
-    public function getSomeProfil($age)
+    public function getSomeProfil($age, $localisation, $hobby)
     {
+
+        $_SESSION['ageSearch'] = $age;
+        $_SESSION['localisationSearch'] = $localisation;
+        $_SESSION['hobbySearch'] = $hobby;
+
         $query = "SELECT users.pseudo, users.nom, users.prenom, users.date_naissance, Images.img_profil 
                                     FROM users INNER JOIN Images 
                                     ON users.pseudo = Images.pseudo WHERE users.pseudo != ?";
+
+
+        if ($hobby != '')
+        {
+            $hobbytab = explode(" ", $hobby);
+            $hobbyTabClean = array();
+            foreach ($hobbytab as $value) {
+                $value = "-" . $value . "-";
+                if (!preg_match('/-#[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜ_]+-/', $value))
+                {
+                    $this->flash->addMessage('error', 'Mauvais format pour les points d\'intérêt (ne pas oublier le "#" et l\'espace entre chaque mot).');
+                    return "error";
+                }
+                else {
+                    array_push($hobbyTabClean, str_replace('-', '', $value));
+                }
+            }
+            if (!empty($hobbyTabClean))
+            {
+                $queryAdd = "";
+                foreach ($hobbyTabClean as $value) {
+                    $queryAdd .= " AND users.hobby LIKE '%" . $value . "%'";
+                }
+                $query .= $queryAdd;
+            }
+        }
+
+
         if ($age == 1) 
         { 
-            $query .= " AND users.date_naissance != 'NULL' AND year(users.date_naissance) >= (year(current_timestamp) - 25) AND year(users.date_naissance) <= (year(current_timestamp) - 18)";   // ne fonctionne pas...
+            $query .= " AND users.date_naissance != 'NULL' AND year(users.date_naissance) >= (year(current_timestamp) - 25) 
+                        AND year(users.date_naissance) <= (year(current_timestamp) - 18)";
         }
         if ($age == 2) 
         { 
-            $query .= " AND users.date_naissance != 'NULL' AND year(users.date_naissance) >= (year(current_timestamp) - 40) AND year(users.date_naissance) <= (year(current_timestamp) - 26)";   // ne fonctionne pas...
+            $query .= " AND users.date_naissance != 'NULL' AND year(users.date_naissance) >= (year(current_timestamp) - 40) 
+                        AND year(users.date_naissance) <= (year(current_timestamp) - 26)";
         }
         if ($age == 3) 
         { 
-            $query .= " AND users.date_naissance != 'NULL' AND year(users.date_naissance) >= (year(current_timestamp) - 60) AND year(users.date_naissance) <= (year(current_timestamp) - 41)";   // ne fonctionne pas...
+            $query .= " AND users.date_naissance != 'NULL' AND year(users.date_naissance) >= (year(current_timestamp) - 60) 
+                        AND year(users.date_naissance) <= (year(current_timestamp) - 41)";
         }
         if ($age == 4) 
         { 
-            $query .= " AND users.date_naissance != 'NULL' AND year(users.date_naissance) <= (year(current_timestamp) - 61)";   // ne fonctionne pas...
+            $query .= " AND users.date_naissance != 'NULL' AND year(users.date_naissance) <= (year(current_timestamp) - 61)";
         }
+
+        // ----------------
+
+        if ($localisation == 1)
+        {
+            $query .= " AND (6371 * Acos(Cos(radians(users.latitude)) * Cos(radians(users.longitude)) * Cos(radians(?)) * Cos(radians(?)) +
+                                         Cos(radians(users.latitude)) * Sin(radians(users.longitude)) * Cos(radians(?)) * Sin(radians(?)) +
+                                         Sin(radians(users.latitude)) * Sin(radians(?)))) <= 20";
+        }
+        if ($localisation == 2)
+        {
+            $query .= " AND (6371 * Acos(Cos(radians(users.latitude)) * Cos(radians(users.longitude)) * Cos(radians(?)) * Cos(radians(?)) +
+                                         Cos(radians(users.latitude)) * Sin(radians(users.longitude)) * Cos(radians(?)) * Sin(radians(?)) +
+                                         Sin(radians(users.latitude)) * Sin(radians(?)))) <= 50";
+        }
+        if ($localisation == 3)
+        {
+            $query .= " AND (6371 * Acos(Cos(radians(users.latitude)) * Cos(radians(users.longitude)) * Cos(radians(?)) * Cos(radians(?)) +
+                                         Cos(radians(users.latitude)) * Sin(radians(users.longitude)) * Cos(radians(?)) * Sin(radians(?)) +
+                                         Sin(radians(users.latitude)) * Sin(radians(?)))) <= 100";
+        }
+        if ($localisation == 4)
+        {
+            $query .= " AND (6371 * Acos(Cos(radians(users.latitude)) * Cos(radians(users.longitude)) * Cos(radians(?)) * Cos(radians(?)) +
+                                         Cos(radians(users.latitude)) * Sin(radians(users.longitude)) * Cos(radians(?)) * Sin(radians(?)) +
+                                         Sin(radians(users.latitude)) * Sin(radians(?)))) <= 500";
+        }
+
+        // ------------------
+
+
         $req = $this->db->prepare($query);
-        $req->execute(array($_SESSION['pseudo']));
+        if ($localisation == 0) 
+        {
+            $req->execute(array($_SESSION['pseudo']));
+
+        }
+        else 
+        {
+            $req->execute(array($_SESSION['pseudo'], $_SESSION['latitude'], $_SESSION['longitude'], $_SESSION['latitude'], 
+                                $_SESSION['longitude'], $_SESSION['latitude']));
+
+        }
         $result = $req->fetchAll();
         
         return $result;

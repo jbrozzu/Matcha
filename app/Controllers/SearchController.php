@@ -24,7 +24,11 @@
 
 		public function postSearch($request, $response)
 		{
-			$_SESSION['allProfil'] = $this->user->getSomeProfil($request->getParam('age'));
+			$_SESSION['allProfil'] = $this->user->getSomeProfil($request->getParam('age'), $request->getParam('localisation'), $request->getParam('hash'));
+			if ($_SESSION['allProfil'] == "error")
+			{
+				$_SESSION['allProfil'] = $this->user->getAllProfil();
+			}
 			return $response->withRedirect($this->router->pathFor('search_add'));
 		}
 

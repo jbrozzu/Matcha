@@ -2,15 +2,22 @@
 
 {% block content %}
 
-	<!-- intervalle d'age
-	score de popularité
-	localisation
-	tag
+	<!--
 
 	triable par age
 	localisation
 	popularité
-	tag -->
+	tag 
+
+	-->
+
+	{% if flash.getMessage('error') %}
+        {% for error in flash.getMessage('error') %}
+            <div class="flashError">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
 	<div class="form_search">
 	<form action="{{ path_for('search') }}" method="post">
@@ -19,28 +26,28 @@
 				<div class="lib_search"> Age : </div>
 				<div class="search_elem">
 				<select name="age" style="width: 110px;height: 25px;">
-				    <option value="0" selected> --- </option>
-				    <option value="1">18 - 25 ans</option>
-				    <option value="2">26 - 40 ans</option>
-				    <option value="3">41 - 60 ans</option>
-				    <option value="4">60 ans et +</option>
+				    <option value="0" {% if session.ageSearch == "0" %}selected{% endif %}> --- </option>
+				    <option value="1" {% if session.ageSearch == "1" %}selected{% endif %}>18 - 25 ans</option>
+				    <option value="2" {% if session.ageSearch == "2" %}selected{% endif %}>26 - 40 ans</option>
+				    <option value="3" {% if session.ageSearch == "3" %}selected{% endif %}>41 - 60 ans</option>
+				    <option value="4" {% if session.ageSearch == "4" %}selected{% endif %}>60 ans et +</option>
 				</select>
 				</div>
 
 				<div class="lib_search"> Hashtags : </div>
 
 				<div class="search_elem">
-				<input type="text" name="hash" style="height: 25px;padding: 5px;"><br>
+				<input type="text" name="hash" style="height: 25px;padding: 5px;" value="{% if session.hobbySearch == "" %}{% else %}{{ session.hobbySearch }}{% endif %}"><br>
 				</div>
 
 				<div class="lib_search"> Localisation : </div>
 				<div class="search_elem">
 				<select name="localisation" style="width: 110px;height: 25px;">
-				    <option value="0" selected> --- </option>
-				    <option value="1">0 - 20 km</option>
-				    <option value="2">0 - 50 km</option>
-				    <option value="3">0 - 100 km</option>
-				    <option value="4">0 - 500 km</option>
+				    <option value="0" {% if session.localisationSearch == "0" %}selected{% endif %}> --- </option>
+				    <option value="1" {% if session.localisationSearch == "1" %}selected{% endif %}>0 - 20 km</option>
+				    <option value="2" {% if session.localisationSearch == "2" %}selected{% endif %}>0 - 50 km</option>
+				    <option value="3" {% if session.localisationSearch == "3" %}selected{% endif %}>0 - 100 km</option>
+				    <option value="4" {% if session.localisationSearch == "4" %}selected{% endif %}>0 - 500 km</option>
 				</select>
 				</div>
 

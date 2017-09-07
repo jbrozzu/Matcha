@@ -47,7 +47,6 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background-color: #333;
 }
 
@@ -55,7 +54,7 @@ li {
     float: left;
 }
 
-.nav {
+.notif {
     border-right:1px solid #bbb;
     height: 22px;
 }
@@ -89,6 +88,15 @@ footer {
 }
 
 .nav1 {
+    font-size: 18px;
+    padding-top: 16px;
+    padding-bottom: 12px;
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    width: 120px;
+}
+
+.nav2 {
     font-size: 18px;
     padding-top: 16px;
     padding-bottom: 12px;
@@ -139,6 +147,126 @@ footer {
     text-align: center;
     display: block;
     width: 154px;
+}
+
+/*  NOTIFICATION  */
+
+#ulNotif {
+    display:block;
+    list-style:none;
+    margin:0;
+    padding:12px 10px;
+    height:21px;
+}
+
+#noti_Container {
+    float:left;
+    font:13px helvetica;
+    font-weight:bold;
+    margin:3px 0;
+}
+
+#aNotif {
+    color:black;
+    text-decoration:none;
+    padding:6px 15px;
+    cursor:pointer;
+}
+
+#notifications a:hover {
+    color:#425B90;
+    text-decoration:none;
+    cursor:pointer;
+}
+    
+#noti_Container {
+    position:relative;
+}
+   
+/* A CIRCLE LIKE BUTTON IN THE TOP MENU. */
+
+#noti_Button {
+    margin:-3px 10px 0 10px;
+    cursor:pointer;
+}
+
+#noti_Img {
+    width:33px;
+    height:33px;
+    border-radius: 10px;
+    margin-top: 7px;
+    margin-left: 20px;
+    border: solid 2px black;
+}
+    
+/* THE POPULAR RED NOTIFICATIONS COUNTER. */
+#noti_Counter {
+    display:block;
+    position:absolute;
+    background:#E1141E;
+    color:#FFF;
+    font-size:12px;
+    font-weight:normal;
+    padding:1px 3px;
+    margin:-10px 0 0 58px;
+    border-radius:2px;
+    -moz-border-radius:2px; 
+    -webkit-border-radius:2px;
+    z-index:1;
+}
+    
+/* THE NOTIFICAIONS WINDOW. THIS REMAINS HIDDEN WHEN THE PAGE LOADS. */
+#notifications {
+    display:none;
+    width:430px;
+    position:absolute;
+    top:48px;
+    left:25px;
+    background:#FFF;
+    border:solid 1px rgba(100, 100, 100, .40);
+    -webkit-box-shadow:0 3px 8px rgba(0, 0, 0, .20);
+    z-index: 1000;
+}
+/* AN ARROW LIKE STRUCTURE JUST OVER THE NOTIFICATIONS WINDOW */
+#notifications:before {         
+    content: '';
+    display:block;
+    width:0;
+    height:0;
+    color:transparent;
+    border:10px solid #CCC;
+    border-color:transparent transparent #FFF;
+    margin-top:-20px;
+    margin-left:10px;
+}
+    
+#titleNotif {
+    display:block;
+    color:#333; 
+    background:#FFF;
+    font-weight:bold;
+    font-size:13px;    
+    padding:8px;
+    margin:0;
+    border-bottom:solid 1px rgba(100, 100, 100, .30);
+}
+    
+#seeAll {
+    background:#F6F7F8;
+    font-size:12px;
+    font-weight:bold;
+    border-top:solid 1px rgba(100, 100, 100, .30);
+    text-align:center;
+}
+#seeAll a {
+    color:black;
+    padding: 5px;
+}
+#seeAll a:hover {
+    color:black;
+    text-decoration:none;
+    background: #e1e2e2;
+
 }
 
 

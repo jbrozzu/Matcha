@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.6.0
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost:8889
--- Généré le :  Lun 03 Avril 2017 à 12:08
--- Version du serveur :  5.5.42
+-- Client :  localhost
+-- Généré le :  Jeu 07 Septembre 2017 à 16:17
+-- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `matcha`
@@ -29,7 +35,7 @@ CREATE TABLE `Images` (
   `img4` varchar(255) DEFAULT 'NULL',
   `img5` varchar(255) DEFAULT 'NULL',
   `img_profil` varchar(255) DEFAULT 'NULL'
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `Images`
@@ -69,7 +75,7 @@ CREATE TABLE `users` (
   `longitude` double DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `users`
@@ -87,6 +93,28 @@ INSERT INTO `users` (`id`, `pseudo`, `email`, `password`, `nom`, `prenom`, `date
 (12, 'Elo95', 'efontan@gmail.com', '59ebeec764fc0e33302d484b9ef5bc76f645618216d5f951b45debf9499703c536732e00e1d2b1ff5ddf71caf214b08bcfc36728511adb8555fcd7a2ad50143e', 'Fontan', 'Elodie', '1975-03-13', 0, 0, NULL, 48.967, 1.85, '2017-02-15 12:10:12', '0000-00-00 00:00:00'),
 (13, 'Juju', 'jarruti@gmail.com', '59ebeec764fc0e33302d484b9ef5bc76f645618216d5f951b45debf9499703c536732e00e1d2b1ff5ddf71caf214b08bcfc36728511adb8555fcd7a2ad50143e', 'Arruti', 'Julien', '1944-02-23', 0, 0, NULL, 48.967, 1.85, '2017-02-15 12:20:12', '0000-00-00 00:00:00'),
 (14, 'Brucey62', 'bruce62@gmail.com', '59ebeec764fc0e33302d484b9ef5bc76f645618216d5f951b45debf9499703c536732e00e1d2b1ff5ddf71caf214b08bcfc36728511adb8555fcd7a2ad50143e', 'Guacamole', 'Bruce', '1963-05-18', 1, 1, '#limonade #trampoline', 48.98527035462768, 1.8078231887817537, '2017-04-02 15:25:49', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `visite`
+--
+
+CREATE TABLE `visite` (
+  `user_id` int(11) NOT NULL,
+  `user_visit` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `visite`
+--
+
+INSERT INTO `visite` (`user_id`, `user_visit`) VALUES
+(1, 13),
+(1, 4),
+(1, 14),
+(1, 3),
+(1, 9);
 
 --
 -- Index pour les tables exportées
@@ -112,9 +140,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `Images`
 --
 ALTER TABLE `Images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

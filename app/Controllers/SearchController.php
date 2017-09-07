@@ -44,6 +44,10 @@
 				$_SESSION['searchProfil']['date_naissance'] = str_replace('-', '/', date("d/m/Y", strtotime($_SESSION['searchProfil']['date_naissance'])));
 			}
 
+			//Enregistrer le fait que le profil a été visité
+
+			$this->user->saveVisit($args['id']);
+
 			return $this->view->render($response, 'search/searchprofil.twig');
 		}
 

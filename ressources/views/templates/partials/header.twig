@@ -1,10 +1,39 @@
 
 <ul>
-    <li><a class="logo" href=" ">MATCHA</a></li>
+    <li><a class="logo" href="{{ path_for('home') }}">MATCHA</a></li>
     
-	<li><a class='nav' href='{{ path_for('home') }}'>Accueil</a></li>
-
     {% if auth.isLogged %}
+
+
+<!-- ----------------------------------------------- -->
+
+
+	
+        <li id="noti_Container">
+
+
+            <div id="noti_Counter"></div>  
+            
+
+            
+            <div id="noti_Button"> <img id="noti_Img" src="{{ base_url() }}/../ressources/images/notif_orange.png"> </div>    
+
+           
+
+            <div id="notifications">
+                <h3 id = "titleNotif"> Notifications </h3>
+                <div style="height:300px;"></div>
+                <div id="seeAll"><a href="#">See All</a></div>
+            </div>
+
+
+        </li>
+        
+
+
+ 
+<!-- ----------------------------------------------- -->
+
 
 
     <ul id="menu-deroulant" style="float:right">

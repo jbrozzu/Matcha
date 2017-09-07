@@ -362,7 +362,35 @@ class User extends Model
         $req_mdp->execute(array($hash, $pseudo, $email));
     }
 
+
+    public function saveVisit($pseudo_visit)
+    {   
+        $query_id = $this->container->db->prepare('SELECT id FROM users where pseudo = :pseudo');
+        $query_id->bindParam(':pseudo', $pseudo_visit);
+        $query_id->execute();
+        $visit_id = $query_id->fetchColumn();
+
+        $query_id = $this->container->db->prepare('SELECT id FROM users where pseudo = :pseudo');
+        $query_id->bindParam(':pseudo', $_SESSION['pseudo']);
+        $query_id->execute();
+        $user_id = $query_id->fetchColumn();
+
+        $query_checkVisit = $this->container->db->prepare('SELECT * FROM visite where user_id = ? AND user_visit = ?');
+        $query_checkVisit->execute(array($user_id, $visit_id));
+        if ($query_checkVisit->fetchColumn())
+        {
+            return;
+        }
+        else 
+        {    
+            $query = $this->container->db->prepare("INSERT INTO visite (user_id, user_visit) VALUES (?, ?)");
+            $query->execute(array($user_id, $visit_id));
+        }
+        
+    }
+
 }
+
 
 
 

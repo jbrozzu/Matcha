@@ -59,9 +59,29 @@ li {
     height: 22px;
 }
 
+#contNotif {
+    overflow: scroll;
+    min-height: 35px;
+    max-height: 300px;
+    line-height: 23px;
+}
 
+#indivNotif {
+    height: 38px;
+    border-bottom: solid rgba(0, 0, 0, 0.15) 1px;
+    padding: 2px 5px 0 5px;
+    margin-top: 1px;
+}
 
-li a {
+#indivNotif:last-child {
+    border-bottom: none;
+}
+
+#indivNotif:hover {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.listeLien {
     display: block;
     color: white;
     text-align: center;
@@ -69,7 +89,7 @@ li a {
     text-decoration: none;
 }
 
-li a:hover:not(.logo) {
+.listeLien:hover:not(.logo) {
     background-color: #111;
 }
 
@@ -192,7 +212,7 @@ footer {
 
 #noti_Img {
     width:33px;
-    height:33px;
+    height:30px;
     border-radius: 10px;
     margin-top: 7px;
     margin-left: 20px;
@@ -245,10 +265,45 @@ footer {
     color:#333; 
     background:#FFF;
     font-weight:bold;
-    font-size:13px;    
+    font-size:15px;    
     padding:8px;
     margin:0;
     border-bottom:solid 1px rgba(100, 100, 100, .30);
+}
+
+#linkNotif {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.75);
+    line-height: 35px;
+    padding-left: 8px;
+}
+
+a#linkNotif:hover {
+    color: black;
+}
+
+.cont_avatar_pic {
+    display: block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border: 2px solid #333;
+    background-image: url('https://mcmprodaaas.s3.amazonaws.com/s3fs-public/styles/adaptive/public/profile-placeholder.png?itok=FCDqaoiV');
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.avatar_pic {
+    max-width: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    margin-top: 1px;
+    margin-left: 0px;
 }
     
 #seeAll {
@@ -364,6 +419,74 @@ input[type=text], input[type=password], input[type=date] {
     border-radius: 10px;
     border: 1px solid #333;
     word-wrap: break-word;
+}
+
+#populaire {
+    position: absolute;
+    background-image: url(../../ressources/images/confectionary.png);
+    display: block;
+    float: left;
+    width: 180px;
+    height: 70px;
+    margin-top: 30px;
+    margin-left: 65px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+#logo_populaire {
+   display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: 3px;
+    margin-top: 9px;
+    border-radius: 50px;
+}
+
+#text_populaire {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 14px;
+    margin-left: 2px;
+    font-size: 16px;
+}
+
+#score_populaire {
+    text-align: center;
+    font-weight: bold;
+    font-size: 19px;
+    margin-top: -6px;
+}
+
+#like_buttom {
+    position: absolute;
+    margin-top: 140px;
+    margin-left: 90px;
+    width: 120px;
+    height: 30px;
+}
+
+.input_like {
+    background-image: url(../../ressources/images/like.png);
+    background-repeat: no-repeat;
+    background-position: 15px 2px;
+    background-size: 23px;
+    padding: 2px 0;
+    border: solid 1px #333;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 87%;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(56, 230, 61, 0.91);
+    font-weight: bold;
+    text-align: center;
+    padding-left: 12px;
+}
+
+.input_like:hover {
+    background-color: rgb(19, 218, 25);
 }
 
 #label {

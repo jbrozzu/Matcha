@@ -28,16 +28,24 @@
 			{
 				$this->user->createUser($request);
 				$_SESSION['pseudo'] = ucfirst($request->getParam('pseudo'));
+				$this->getProfil($request, $response);
+				$this->checkNotifVisit($_SESSION['pseudo'], $_SESSION['id']);
 				return $response->withRedirect($this->router->pathFor('home'));	
 			}
 
 			return $response->withRedirect($this->router->pathFor('auth.signup'));
 		}
 
+		public function checkNotifVisit($pseudo, $id)
+		{
+			$_SESSION['notifs'] = $this->user->getNotif($pseudo, $id);
+		}
+
 		public function getLogin($request, $response)
 		{
 			if ($this->isLogged())
 			{
+				
 				return $response->withRedirect($this->router->pathFor('home'));	
 			}
 			
@@ -50,6 +58,8 @@
 			if ($this->user->checkLog($request->getParam('pseudo'), $request->getParam('password')) == 2)
 			{
 				$_SESSION['pseudo'] = ucfirst($request->getParam('pseudo'));
+				$this->getProfil($request, $response);
+				$this->checkNotifVisit($_SESSION['pseudo'], $_SESSION['id']);
 				return $response->withRedirect($this->router->pathFor('home'));
 			}
 			elseif ($this->user->checkLog($request->getParam('pseudo'), $request->getParam('password')) == 1)

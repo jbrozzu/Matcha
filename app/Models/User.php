@@ -389,6 +389,14 @@ class User extends Model
         
     }
 
+    public function getNotif($pseudo, $id)
+    {
+        $query = $this->container->db->prepare("SELECT users.pseudo AS pseudo, Images.img_profil AS picture FROM (users, Images) INNER JOIN visite ON visite.user_id = users.id AND Images.id = visite.user_id WHERE visite.user_visit = ?");
+        $query->execute(array($id));
+        $result = $query->fetchAll();
+        return $result;
+    }
+
 }
 
 

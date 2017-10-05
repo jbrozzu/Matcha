@@ -33,7 +33,19 @@ $(document).ready(function () {
         }
     });
 
-    $('#notifications').click(function () {
-        return false;       // DO NOTHING WHEN CONTAINER IS CLICKED.
-    });
+    // $('#notifications').click(function () {
+    //     return false;       // DO NOTHING WHEN CONTAINER IS CLICKED.
+    // });
+
 });
+
+    // setInterval('load_notif()', 500);
+
+    // function load_notif() {
+    //     $('#notifications').load();
+    // }
+
+
+
+
+

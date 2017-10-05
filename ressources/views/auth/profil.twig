@@ -4,7 +4,11 @@
 
 	{% block content %}
 
-	
+			<div id="populaire">
+			<img id="logo_populaire" src="{{ base_url() }}/../ressources/images/populaire.jpg">
+			<div id="text_populaire" > Score de Popularité : </div>
+			<div id="score_populaire"> 1000 pts </div>
+			</div>
 
 			<div class="user one"> {% if session.picProfil == "NULL" %} {% else %} <img class="img_profil" src="../../ressources/pictures/{{ session.picProfil }}" >  {% endif %}</div>
 

@@ -25,5 +25,7 @@
 	$app->get('/search', 'SearchController:getSearch')->setName('search');
 	$app->post('/search', 'SearchController:postSearch');
 	$app->get('/search_add', 'SearchController:getSearchAdd')->setName('search_add');
-	$app->get('/search/{id}', 'SearchController:getProfil')->setName('profil_search');
+	$app->get('/search/{id}', 'SearchController:getSearchProfil')->setName('profil_search');
+
+
 

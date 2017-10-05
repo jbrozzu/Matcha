@@ -1,6 +1,6 @@
 
 <ul>
-    <li><a class="logo" href="{{ path_for('home') }}">MATCHA</a></li>
+    <li><a class="logo listeLien" href="{{ path_for('home') }}">MATCHA</a></li>
     
     {% if auth.isLogged %}
 
@@ -22,8 +22,28 @@
 
             <div id="notifications">
                 <h3 id = "titleNotif"> Notifications </h3>
-                <div style="height:300px;"></div>
-                <div id="seeAll"><a href="#">See All</a></div>
+                <div id="contNotif">
+                {% if session.notifs != NULL %}
+                    {% for notif in session.notifs %}
+                        
+                        <div id="indivNotif">
+                            <div class="cont_avatar_pic">  <img class="avatar_pic" {% if notif.picture != "NULL" %} src="{{ base_url() }}/../ressources/pictures/{{ notif.picture }}" {% endif %}> </div>
+                            <a id="linkNotif" href="{{ path_for('profil_search' , {'id': notif.pseudo}) }}">{{ notif.pseudo }} a visité votre page de profil </a>
+                        </div>
+                    {% endfor %}
+                        
+                        <div id="seeAll"><a href="#">See All</a></div>
+
+                    
+                {% else %}
+                     <div id="indivNotif" style="text-align:center;">
+                        <div> Aucune Notification </div>
+                     </div>
+                {%endif%}
+                </div>
+
+
+               <!--  <div id="seeAll"><a href="#">See All</a></div> -->
             </div>
 
 
@@ -37,20 +57,20 @@
 
 
     <ul id="menu-deroulant" style="float:right">
-		<li style="float:right"><a class='nav1' href=''> {{ session.pseudo }}</a>
+		<li style="float:right"><a class='nav1 listeLien' href=''> {{ session.pseudo }}</a>
 			<ul>
-				<li class="subtitle" id="def1"><a href="{{ path_for('auth.profil') }}">Mon Profil</a></li> </br>
-				<li class="subtitle"><a href="#">Mes Contacts</a></li> </br>
-				<li class="subtitle" id="def1"><a href="{{ path_for('auth.logout') }}">Déconnexion</a></li>
+				<li class="subtitle" id="def1"><a class="listeLien" href="{{ path_for('auth.profil') }}">Mon Profil</a></li> </br>
+				<li class="subtitle"><a class="listeLien" href="#">Mes Contacts</a></li> </br>
+				<li class="subtitle" id="def1"><a class="listeLien" href="{{ path_for('auth.logout') }}">Déconnexion</a></li>
 			</ul>
 		</li>
 	</ul>
-     <li style="float:right"><a class='nav1' href="{{ path_for('search') }}"> Recherche </a></li>
+     <li style="float:right"><a class='nav1 listeLien' href="{{ path_for('search') }}"> Recherche </a></li>
 
 
 	{% else %}
-    <li style="float:right; border-left:1px solid #bbb;" class="copy"><a class="nav" href=" {{ path_for('auth.signup') }} ">Signup</a></li>
-    <li style="float:right; border-left:1px solid #bbb;"><a class='nav' href='{{ path_for('auth.login') }}' >Login</a></li>
+    <li style="float:right; border-left:1px solid #bbb; border-right:1px solid #bbb;" class="copy"><a class="nav listeLien" href=" {{ path_for('auth.signup') }} ">Signup</a></li>
+    <li style="float:right; border-left:1px solid #bbb;"><a class='nav listeLien' href='{{ path_for('auth.login') }}' >Login</a></li>
     {% endif %}
        
 </ul> 

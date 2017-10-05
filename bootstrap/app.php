@@ -42,6 +42,7 @@
 		$view->getEnvironment()->addGlobal('flash', $container['flash']);
 		$view->getEnvironment()->addGlobal('session', $_SESSION);
 		$view->getEnvironment()->addGlobal('auth', $container['AuthController']);
+		$view->getEnvironment()->addGlobal('search', $container['SearchController']);
 
 		return $view;
 	};

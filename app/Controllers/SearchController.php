@@ -11,7 +11,6 @@
 		public function getSearch($request, $response)
 		{
 			$_SESSION['allProfil'] = $this->user->getAllProfil();
-
 			return $this->view->render($response, 'search/search.twig');
 		}
 
@@ -33,7 +32,7 @@
 		}
 
 
-		public function getProfil($request, $response, $args)
+		public function getSearchProfil($request, $response, $args)
 		{
 			$_SESSION['searchProfil'] = $this->user->getProfilInfos($args['id']);
 			$_SESSION['searchPicture'] = $this->user->getPictures($args['id']);

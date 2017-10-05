@@ -4,11 +4,18 @@
 
 	{% block content %}
 
+		<div id="populaire">
+			<img id="logo_populaire" src="{{ base_url() }}/../ressources/images/populaire.jpg">
+			<div id="text_populaire" > Score de Popularité : </div>
+			<div id="score_populaire"> 1000 pts </div>
+		</div>
 
-		<div class="user one"> {% if session.searchPicture.img_profil == "NULL" %} {% else %}  <img class="img_profil" src="../../ressources/pictures/{{ session.searchPicture.img_profil }}" >  {% endif %}</div>
+		<div id="like_buttom">
+			<a href="{{ path_for('') }}"> <input class="input_like" type="submit" value="LIKE" /> </a>
+		</div>
 
+		<div class="user one"> {% if session.searchPicture.img_profil == "NULL" %} {% else %}  <img class="img_profil" src="{{ base_url() }}/../ressources/pictures/{{ session.searchPicture.img_profil }}" >  {% endif %}</div>
 
-			
 
 			
 			<div id="infos">
